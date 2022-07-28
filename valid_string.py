@@ -1,3 +1,4 @@
+from curses.ascii import FS, isdigit
 import re as regular_expression
 
 class StringValidation:
@@ -34,15 +35,25 @@ class StringValidation:
             return True
         
     def string_numbers_are_spelt(self, input_string):
+        number_list = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"]
         for word in input_string.split():
             if word.isdigit():
                 if int(word) < 13:
-                    print(word)
+                    return True
+
+        
+            if str(word) in number_list:
+                return True
+            else:
+                return False
+
+
+# Numbers below 13 are spelled out (”one”, “two”, "three”, etc…).
 
 
 
 
 if __name__ == "__main__":
     test_validation = StringValidation('The quick brown fox said “hello Mr lazy dog”.')
-    print(test_validation.string_numbers_are_spelt('One lazy dog is too few, 12 is too many.'))
+    print(test_validation.string_numbers_are_spelt('One lazy dog is too few, 13 is too many.'))
     

@@ -1,3 +1,4 @@
+from curses.ascii import FS, isdigit
 import re as regular_expression
 
 class StringValidation:
@@ -38,6 +39,7 @@ class StringValidation:
         else:
             return True
         
+<<<<<<< HEAD
     def string_numbers_are_spelt(self):
         invalid = regular_expression.findall(r"\b([1-9]|1[0-2])\b", self.input_string)
         if invalid:
@@ -52,3 +54,28 @@ if __name__ == "__main__":
         print('Input String is a valid string.')
     else:
         print('Input String is not a valid string.')
+=======
+    def string_numbers_are_spelt(self, input_string):
+        number_list = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"]
+        for word in input_string.split():
+            if word.isdigit():
+                if int(word) < 13:
+                    return True
+
+        
+            if str(word) in number_list:
+                return True
+            else:
+                return False
+
+
+# Numbers below 13 are spelled out (”one”, “two”, "three”, etc…).
+
+
+
+
+if __name__ == "__main__":
+    test_validation = StringValidation('The quick brown fox said “hello Mr lazy dog”.')
+    print(test_validation.string_numbers_are_spelt('One lazy dog is too few, 13 is too many.'))
+    
+>>>>>>> 7aca85addbad9685626fdb30146bab208bbb5392

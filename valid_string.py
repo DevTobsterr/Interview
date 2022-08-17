@@ -1,10 +1,24 @@
-from curses.ascii import FS, isdigit
 import re as regular_expression
+
+string_validation_input_test_cases = [
+    # Invalid Test Cases
+    r'The quick brown fox said "hello Mr. lazy dog".', 
+    r'the quick brown fox said “hello Mr lazy dog".',
+    r'"The quick brown fox said “hello Mr lazy dog."',
+    r'One lazy dog is too few, 12 is too many.',
+    r'Are there 11, 12, or 13 lazy dogs?',
+    r'There is no punctuation in this sentence',
+    # Valid Test Cases
+    r'The quick brown fox said “hello Mr lazy dog”.',
+    r'The quick brown fox said hello Mr lazy dog.',
+    r'One lazy dog is too few, 13 is too many.', 
+    r'One lazy dog is too few, thirteen is too many.', 
+    r'How many "lazy dogs" are there?',
+]
 
 class StringValidation:
     def __init__(self, input_string):
         self.input_string = input_string
-        print(type(input_string))
         if type(input_string) in ["str"]:
             print("Input value is not String")
         else:
@@ -39,7 +53,14 @@ class StringValidation:
         else:
             return True
         
-<<<<<<< HEAD
+
+    def string_numbers_are_spelt(self):
+        invalid = regular_expression.findall(r"\b([1-9]|1[0-2])\b", self.input_string)
+        if invalid:
+            return False
+        else:
+            return True
+
     def string_numbers_are_spelt(self):
         invalid = regular_expression.findall(r"\b([1-9]|1[0-2])\b", self.input_string)
         if invalid:
@@ -48,34 +69,15 @@ class StringValidation:
             return True
 
 if __name__ == "__main__":
-    test_validation = StringValidation('The quick brown fox said “hello Mr lazy dog”.')
-    validation_rule_for_input_string = test_validation.string_starts_with_capital() and test_validation.string_has_even_quotation() and test_validation.string_termination_character() and test_validation.string_has_single_peroid() and test_validation.string_numbers_are_spelt()
-    if validation_rule_for_input_string:
-        print('Input String is a valid string.')
-    else:
-        print('Input String is not a valid string.')
-=======
-    def string_numbers_are_spelt(self, input_string):
-        number_list = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"]
-        for word in input_string.split():
-            if word.isdigit():
-                if int(word) < 13:
-                    return True
-
-        
-            if str(word) in number_list:
-                return True
-            else:
-                return False
-
-
-# Numbers below 13 are spelled out (”one”, “two”, "three”, etc…).
+    for input_string in string_validation_input_test_cases:
+        test_validation = StringValidation(input_string)
+        validation_rule_for_input_string = test_validation.string_starts_with_capital() \
+            and test_validation.string_has_even_quotation() and test_validation.string_termination_character() \
+                and test_validation.string_has_single_peroid() and test_validation.string_numbers_are_spelt()
 
 
 
 
-if __name__ == "__main__":
-    test_validation = StringValidation('The quick brown fox said “hello Mr lazy dog”.')
-    print(test_validation.string_numbers_are_spelt('One lazy dog is too few, 13 is too many.'))
+
     
->>>>>>> 7aca85addbad9685626fdb30146bab208bbb5392
+

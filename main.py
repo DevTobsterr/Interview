@@ -1,4 +1,4 @@
-from valid_string import StringValidation
+from validate_string import StringValidation
 
 string_validation_input_test_cases = [
         # Invalid Test Cases

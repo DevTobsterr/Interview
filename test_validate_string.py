@@ -1,4 +1,4 @@
-from valid_string import StringValidation
+from validate_string import StringValidation
 import pytest
 
 string_validation_test_cases = ("test_input_string, expected_outcome_of_test",

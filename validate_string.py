@@ -1,4 +1,5 @@
 import re as regular_expression
+
 class StringValidation:
     def __init__(self, input_string):
         self.input_string = input_string

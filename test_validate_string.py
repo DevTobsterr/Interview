@@ -1,9 +1,10 @@
-from main import main
-import pytest
+import pytest # Importing pytest for testing
+from validate_string import main # Importing main func from validate_string.py
+
 
 string_validation_test_cases = ("test_input_string, expected_outcome_of_test",
     [
-        # Invalid Test Cases - Assert False
+        # Invalid Test Cases - Assert False - Provided in the Spec
         (f'The quick brown fox said "hello Mr. lazy dog".', False), 
         (f'the quick brown fox said “hello Mr lazy dog".', False),
         (f'"The quick brown fox said “hello Mr lazy dog."', False),
@@ -11,46 +12,26 @@ string_validation_test_cases = ("test_input_string, expected_outcome_of_test",
         (f'Are there 11, 12, or 13 lazy dogs?', False),
         (f'There is no punctuation in this sentence', False),
 
-        # Valid Test Cases - Assert True
+        # Testing rare use cases - Null Values, White Spaces and Special Chars
+        (f'', False),
+        (f'!@£$%^&*()_+', False),
+        (f'          ', False),
+
+        # Valid Test Cases - Assert True - Provided in the Spec
         (f'The quick brown fox said “hello Mr lazy dog”.', True),
         (f'The quick brown fox said hello Mr lazy dog.', True),
         (f'One lazy dog is too few, 13 is too many.', True), 
         (f'One lazy dog is too few, thirteen is too many.', True), 
         (f'How many "lazy dogs" are there?', True)
+
+        (f'!@£$%^&*()_+', False),
+        
     ]
 )
 
-
 @pytest.mark.parametrize(*string_validation_test_cases)
-def test_string_has_even_quotation(test_input_string, expected_outcome_of_test):
+def test_main_validate_string(test_input_string, expected_outcome_of_test):
+    # Single Test for main() passing in test input string and expected outcome of test
     string_validation = main(test_input_string)
     assert string_validation == expected_outcome_of_test
-
-# @pytest.mark.parametrize(*string_validation_test_cases)
-# def test_string_has_even_quotation(test_input_string, expected_outcome_of_test):
-#     string_validation = StringValidation(test_input_string)
-#     assert string_validation.string_has_even_quotation() == expected_outcome_of_test
-
-
-# @pytest.mark.parametrize(*string_validation_test_cases)
-# def test_string_starts_with_capital(test_input_string, expected_outcome_of_test):
-#     string_validation = StringValidation(test_input_string)
-#     assert string_validation.string_starts_with_capital() == expected_outcome_of_test
-
-
-# @pytest.mark.parametrize(*string_validation_test_cases)
-# def test_string_termination_character(test_input_string, expected_outcome_of_test):
-#     string_validation = StringValidation(test_input_string)
-#     assert string_validation.string_termination_character() == expected_outcome_of_test
-
-# @pytest.mark.parametrize(*string_validation_test_cases)
-# def test_string_has_single_peroid(test_input_string, expected_outcome_of_test):
-#     string_validation = StringValidation(test_input_string)
-#     assert string_validation.string_has_single_peroid() == expected_outcome_of_test
-
-
-# @pytest.mark.parametrize(*string_validation_test_cases)
-# def test_string_numbers_are_spelt(test_input_string, expected_outcome_of_test):
-#     string_validation = StringValidation(test_input_string)
-#     assert string_validation.string_numbers_are_spelt() == expected_outcome_of_test
-
+    # Asserting that the actual outcome of test is equal to the expected outcome of test

@@ -22,8 +22,7 @@ string_validation_test_cases = ("test_input_string, expected_outcome_of_test",
         (f'The quick brown fox said hello Mr lazy dog.', True),
         (f'One lazy dog is too few, 13 is too many.', True), 
         (f'One lazy dog is too few, thirteen is too many.', True), 
-        (f'How many "lazy dogs" are there?', True)
-
+        (f'How many "lazy dogs" are there?', True),
         (f'!@£$%^&*()_+', False),
         
     ]

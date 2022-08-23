@@ -68,7 +68,6 @@ class StringValidation:
         else:
             return True
         
-
     def string_numbers_are_spelt(self):
         invalid = regular_expression.findall(r"\b([1-9]|1[0-2])\b", self.input_string)
         # Using python regular expression to find all numbers under 13 and return false if found
